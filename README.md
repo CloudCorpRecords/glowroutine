@@ -34,21 +34,26 @@ shoppers get irritation.
 
 ## Which YouCam API it integrates, and how
 
-**YouCam Skin AI API (Perfect Corp)** — server-to-server REST, implemented
-in `src/youcam.js`:
+**YouCam Skin AI API (Perfect Corp)** — server-to-server REST (the current
+V2 API), implemented in `src/youcam.js`:
 
-1. `POST /file/skin-analyze` — upload the face photo, receive a `file_id`.
-2. `POST /task/skin-analyze` — start analysis with `src_file_id` and the
-   `dst_actions` we request (`skin_age`, `skin_oiliness`, `skin_moisture`,
-   `wrinkle`, `pore`, `spot`, `dark_circle`, `acne`, `firmness`,
-   `radiance`, `redness`).
-3. `GET /task/skin-analyze?task_id=…` — poll until success, then normalize
-   the per-action scores into the app's concern model (`normalizeResults`).
+1. `POST /s2s/v2.0/file/skin-analysis` — register the photo, receive a
+   `file_id` plus a pre-signed upload URL; `PUT` the image bytes to it.
+2. `POST /s2s/v2.0/task/skin-analysis` — start analysis with `src_file_id`
+   and the `dst_actions` we request (`oiliness`, `moisture`, `wrinkle`,
+   `age_spot`, `pore`, `dark_circle_v2`, `acne`, `firmness`, `radiance`,
+   `redness`; `skin_age` is returned with every task).
+3. `GET /s2s/v2.0/task/skin-analysis/<task_id>` — poll until success, then
+   normalize the per-action scores into the app's concern model
+   (`normalizeResults`). The API returns HEALTH scores (higher =
+   healthier); the app's model is CONCERN scores (higher = worse), so
+   normalization inverts: `concern = 100 - ui_score`.
 
 Auth is `Authorization: Bearer <YOUCAM_API_KEY>`; the host is configurable
-via `YOUCAM_API_BASE`. The routine agent (`src/agent.js`) consumes live and
-sample results through the exact same shape, so switching modes changes
-nothing downstream.
+via `YOUCAM_API_BASE` (default `https://yce-api-01.makeupar.com/s2s/v2.0`).
+The routine agent (`src/agent.js`) consumes live and sample results
+through the exact same shape, so switching modes changes nothing
+downstream.
 
 ### Sample-data mode (why, and how to go live)
 
@@ -69,6 +74,12 @@ To go live after registration:
    `YOUCAM_API_KEY=<your key> npm start`
    `/api/status` now reports `"mode": "live"` and photo uploads run real
    YouCam Skin AI analyses.
+
+**Status (2026-10-27): LIVE.** The redeem code was claimed, an API key was
+generated in the console, and the key is set on the production deployment.
+Live calls were verified end-to-end (the console key + RSA secret pass the
+V1 token-auth check, and the V2 file/task flow returned a real analysis
+through this app's own server) before the key was wired in.
 
 ## Run it
 
