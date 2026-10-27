@@ -1,0 +1,1 @@
+{"description":"GlowRoutine — a Skin AI shopping assistant. YouCam Skin AI analysis in, an agent-built personal skincare routine and shopping list out.","engines":{"node":">=18"},"license":"MIT","main":"server.js","name":"glowroutine","scripts":{"smoke":"node test/smoke.js","start":"node server.js"},"type":"commonjs","version":"1.0.0"}

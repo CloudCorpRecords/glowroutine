@@ -1,0 +1,30 @@
+:root{--ink:#26202b;--accent:#b03a7c;--soft:#fdf4f8;--line:#e8d8e2}
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:var(--ink);background:#fff}
+header{background:linear-gradient(120deg,#451c33,#b03a7c);color:#fff;padding:28px 20px}
+header h1{margin:0 0 4px;font-size:2rem}.tag{margin:0;opacity:.92}
+.mode{margin:10px 0 0;font-size:.85rem;background:rgba(255,255,255,.16);display:inline-block;padding:4px 10px;border-radius:999px}
+main{max-width:860px;margin:0 auto;padding:20px}
+.card{border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:18px;background:var(--soft)}
+.card h2{margin-top:0;color:#7c2456}
+label{display:block;margin:10px 0;font-weight:600}
+select,input[type=number]{width:100%;padding:9px;border:1px solid var(--line);border-radius:8px;margin-top:4px;font:inherit}
+fieldset{border:1px solid var(--line);border-radius:8px;margin:12px 0}
+.chk{display:inline-block;font-weight:400;margin:4px 10px 4px 0}
+button{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer}
+button:hover{background:#932f66}
+.hint{font-size:.85rem;color:#6b5b66}
+.hidden{display:none}
+.sourcelabel{font-weight:700;color:#7c2456}
+.bar{margin:7px 0}.bar .lbl{display:flex;justify-content:space-between;font-size:.9rem}
+.bar .track{height:10px;background:#ecdbe6;border-radius:999px;overflow:hidden}
+.bar .fill{height:100%;background:linear-gradient(90deg,#e58bb8,#b03a7c)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.cols{grid-template-columns:1fr}}
+ul.steps{list-style:none;padding:0}ul.steps li{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:9px}
+ul.steps .pname{font-weight:700}ul.steps .why{display:block;font-size:.86rem;color:#5c4a56;margin-top:3px}
+ul.steps .price{float:right;color:#7c2456;font-weight:700}
+ul.cart{list-style:none;padding:0}ul.cart li{padding:6px 2px;border-bottom:1px dashed var(--line)}
+.total{font-size:1.1rem;font-weight:800}
+.disclaimer{font-size:.85rem;color:#6b5b66;font-style:italic}
+details{margin-bottom:12px}details ol{font-size:.9rem;color:#4c3f49}
+footer{max-width:860px;margin:0 auto;padding:0 20px 30px;font-size:.85rem;color:#6b5b66}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GlowRoutine — Skin AI Shopping Assistant</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>✨ GlowRoutine</h1>
+  <p class="tag">Skin AI analysis in. A personal routine + shopping list out.</p>
+  <p class="mode" id="modeBanner">Checking analysis mode…</p>
+</header>
+
+<main>
+  <section class="card" id="intakeCard">
+    <h2>1 · Your skin, your budget</h2>
+    <label>Pick a sample profile (demo mode)
+      <select id="profileSelect"></select>
+    </label>
+    <p class="hint" id="profileBlurb"></p>
+    <fieldset>
+      <legend>Anything you already know bugs your skin? (optional)</legend>
+      <label class="chk"><input type="checkbox" name="concern" value="dark spots"> Dark spots</label>
+      <label class="chk"><input type="checkbox" name="concern" value="breakouts"> Breakouts</label>
+      <label class="chk"><input type="checkbox" name="concern" value="dryness"> Dryness / tightness</label>
+      <label class="chk"><input type="checkbox" name="concern" value="fine lines"> Fine lines</label>
+      <label class="chk"><input type="checkbox" name="concern" value="sensitivity"> Sensitivity</label>
+    </fieldset>
+    <label>Monthly routine budget (USD)
+      <input type="number" id="budget" min="0" placeholder="e.g. 60 — leave blank for no cap">
+    </label>
+    <button id="analyzeBtn">Run Skin AI analysis →</button>
+    <p class="hint">Live mode: with a YouCam API key configured, this step uploads your photo to the
+    YouCam Skin AI API instead. This demo build ships with sample profiles because the free
+    hackathon API key arrives by email after Devpost registration (see README).</p>
+  </section>
+
+  <section class="card hidden" id="analysisCard">
+    <h2>2 · Skin AI results</h2>
+    <p class="sourcelabel" id="sourceLabel"></p>
+    <div id="scores"></div>
+    <p id="skinAge"></p>
+  </section>
+
+  <section class="card hidden" id="routineCard">
+    <h2>3 · Your agent-built routine</h2>
+    <p id="skinTypeLine"></p>
+    <details open><summary>How the agent reasoned (trace)</summary><ol id="trace"></ol></details>
+    <div class="cols">
+      <div><h3>☀️ Morning</h3><ul id="amList" class="steps"></ul></div>
+      <div><h3>🌙 Evening</h3><ul id="pmList" class="steps"></ul></div>
+    </div>
+    <p class="disclaimer" id="disclaimer"></p>
+  </section>
+
+  <section class="card hidden" id="cartCard">
+    <h2>4 · Shopping list</h2>
+    <ul id="cartList" class="cart"></ul>
+    <p class="total" id="cartTotal"></p>
+    <button id="copyBtn">Copy shopping list</button>
+    <p class="hint">Demo catalog with typical drugstore prices — in production each row deep-links to the retailer.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Powered by the YouCam Skin AI API by Perfect Corp (sample-data mode until the hackathon key is redeemed).
+  Cosmetic guidance only, not medical advice.</p>
+  <p>Build Disclosure: AI-built. Built by AI agents (Tree / Muse fleet) directed by Rene Turcios.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
